@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import 'cadastro.dart';
+import 'admin_home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
@@ -23,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // 🔐 LOGIN CLIENTE
   void loginCliente() async {
     final service = AuthService();
 
@@ -48,8 +50,14 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  // 🔥 LOGIN ADMIN (CORRIGIDO)
   void loginAdmin() {
-    mostrarMensagem("Área de administrador em desenvolvimento");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AdminHome(),
+      ),
+    );
   }
 
   @override
@@ -99,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
 
             const SizedBox(height: 20),
 
+            // BOTÃO CLIENTE
             ElevatedButton(
               onPressed: loginCliente,
               child: const Text("Entrar como Cliente"),
@@ -106,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
 
             const SizedBox(height: 10),
 
+            // BOTÃO ADMIN
             ElevatedButton(
               onPressed: loginAdmin,
               child: const Text("Entrar como Administrador"),
@@ -113,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
 
             const SizedBox(height: 20),
 
+            // CADASTRO
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -131,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// TELA CLIENTE
+// 🏠 TELA CLIENTE
 class HomeCliente extends StatelessWidget {
   const HomeCliente({super.key});
 
